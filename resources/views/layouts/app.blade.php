@@ -276,6 +276,36 @@
                 </a>
             </li>
 
+            @can('view-members')
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('member.*') ? '' : 'collapsed' }}"
+                        href="{{ route('member.index') }}">
+                        <i class='bx bx-group'></i>
+                        <span>Anggota</span>
+                    </a>
+                </li>
+            @endcan
+
+            @can('view-divisions')
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('division.*') ? '' : 'collapsed' }}"
+                        href="{{ route('division.index') }}">
+                        <i class='bx bx-buildings'></i>
+                        <span>Divisi</span>
+                    </a>
+                </li>
+            @endcan
+
+            @can('view-positions')
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('position.*') ? '' : 'collapsed' }}"
+                        href="{{ route('position.index') }}">
+                        <i class='bx bx-medal'></i>
+                        <span>Jabatan</span>
+                    </a>
+                </li>
+            @endcan
+
             @can('manage-settings')
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('setting.*') ? '' : 'collapsed' }}"

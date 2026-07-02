@@ -81,5 +81,73 @@ class AppServiceProvider extends ServiceProvider
             $position = $user->member?->position?->name;
             return ($user->role === 'Admin' && in_array($position, ['Ketua', 'Sekretaris', 'Koordinator Divisi'])) || $user->role === 'Pengurus';
         });
+
+        // ==========================================
+        // MEMBERS
+        // ==========================================
+        \Illuminate\Support\Facades\Gate::define('view-members', function ($user) {
+            // Semua pengguna boleh melihat data anggota
+            return true;
+        });
+
+        \Illuminate\Support\Facades\Gate::define('create-members', function ($user) {
+            $position = $user->member?->position?->name;
+            return $user->role === 'Admin' && in_array($position, ['Ketua', 'Sekretaris']);
+        });
+
+        \Illuminate\Support\Facades\Gate::define('update-members', function ($user) {
+            $position = $user->member?->position?->name;
+            return $user->role === 'Admin' && in_array($position, ['Ketua', 'Sekretaris']);
+        });
+
+        \Illuminate\Support\Facades\Gate::define('delete-members', function ($user) {
+            $position = $user->member?->position?->name;
+            return $user->role === 'Admin' && in_array($position, ['Ketua', 'Sekretaris']);
+        });
+
+        // ==========================================
+        // DIVISIONS
+        // ==========================================
+        \Illuminate\Support\Facades\Gate::define('view-divisions', function ($user) {
+            // Hanya role Admin (Ketua, Sekretaris, Bendahara, Koordinator)
+            return $user->role === 'Admin';
+        });
+
+        \Illuminate\Support\Facades\Gate::define('create-divisions', function ($user) {
+            $position = $user->member?->position?->name;
+            return $user->role === 'Admin' && $position === 'Ketua';
+        });
+
+        \Illuminate\Support\Facades\Gate::define('update-divisions', function ($user) {
+            $position = $user->member?->position?->name;
+            return $user->role === 'Admin' && $position === 'Ketua';
+        });
+
+        \Illuminate\Support\Facades\Gate::define('delete-divisions', function ($user) {
+            $position = $user->member?->position?->name;
+            return $user->role === 'Admin' && $position === 'Ketua';
+        });
+
+        // ==========================================
+        // POSITIONS
+        // ==========================================
+        \Illuminate\Support\Facades\Gate::define('view-positions', function ($user) {
+            return $user->role === 'Admin';
+        });
+
+        \Illuminate\Support\Facades\Gate::define('create-positions', function ($user) {
+            $position = $user->member?->position?->name;
+            return $user->role === 'Admin' && $position === 'Ketua';
+        });
+
+        \Illuminate\Support\Facades\Gate::define('update-positions', function ($user) {
+            $position = $user->member?->position?->name;
+            return $user->role === 'Admin' && $position === 'Ketua';
+        });
+
+        \Illuminate\Support\Facades\Gate::define('delete-positions', function ($user) {
+            $position = $user->member?->position?->name;
+            return $user->role === 'Admin' && $position === 'Ketua';
+        });
     }
 }

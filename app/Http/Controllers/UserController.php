@@ -68,7 +68,16 @@ class UserController extends Controller
 
             $validate['password'] = bcrypt($request->password);
             $validate['email_verified_at'] = now();
-            User::create($validate);
+            
+            $user = User::create($validate);
+            
+            // Auto create member skeleton
+            \App\Models\Member::create([
+                'user_id' => $user->id,
+                'full_name' => $user->name,
+                'status' => 'Aktif',
+                'join_date' => now(),
+            ]);
 
             DB::commit();
             return to_route('user.index')->withSuccess('Data berhasil ditambahkan');
