@@ -137,7 +137,7 @@ class UserController extends Controller
                 }
             }
 
-            if ($user->password) {
+            if ($request->filled('password')) {
                 $validate['password'] = bcrypt($request->password);
             } else {
                 unset($validate['password']);

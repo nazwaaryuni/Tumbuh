@@ -24,8 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/edit', [DashboardController::class, 'edit'])->name('dashboard.edit');
     Route::put('/dashboard/update', [DashboardController::class, 'update'])->name('dashboard.update');
 
-    Route::resource('/user', UserController::class)->middleware('role:Superadmin');
+    Route::resource('/user', UserController::class)->middleware('can:manage-users');
 
-    Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
-    Route::put('/setting/{setting}/update', [SettingController::class, 'update'])->name('setting.update');
+    Route::get('/setting', [SettingController::class, 'index'])->name('setting.index')->middleware('can:manage-settings');
+    Route::put('/setting/{setting}/update', [SettingController::class, 'update'])->name('setting.update')->middleware('can:manage-settings');
 });

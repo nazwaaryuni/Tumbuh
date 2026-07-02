@@ -276,6 +276,7 @@
                 </a>
             </li>
 
+            @can('manage-settings')
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('setting.*') ? '' : 'collapsed' }}"
                     href="{{ route('setting.index') }}">
@@ -283,8 +284,9 @@
                     <span>Setting</span>
                 </a>
             </li>
+            @endcan
 
-            @if (Auth::user()->role == 'Superadmin')
+            @can('manage-users')
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('user.*') ? '' : 'collapsed' }}"
                         href="{{ route('user.index') }}">
@@ -292,7 +294,7 @@
                         <span>User</span>
                     </a>
                 </li>
-            @endif
+            @endcan
 
 
         </ul>
