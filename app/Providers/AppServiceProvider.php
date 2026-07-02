@@ -149,5 +149,38 @@ class AppServiceProvider extends ServiceProvider
             $position = $user->member?->position?->name;
             return $user->role === 'Admin' && $position === 'Ketua';
         });
+        // ==========================================
+        // PROGRAMS
+        // ==========================================
+        \Illuminate\Support\Facades\Gate::define('view-programs', function ($user) {
+            return $user->role === 'Admin';
+        });
+
+        \Illuminate\Support\Facades\Gate::define('create-programs', function ($user) {
+            $position = $user->member?->position?->name;
+            return $user->role === 'Admin' && in_array($position, ['Ketua', 'Sekretaris', 'Koordinator Divisi']);
+        });
+
+        \Illuminate\Support\Facades\Gate::define('update-programs', function ($user, $program) {
+            $position = $user->member?->position?->name;
+            if ($user->role === 'Admin' && in_array($position, ['Ketua', 'Sekretaris'])) {
+                return true;
+            }
+            if ($user->role === 'Admin' && $position === 'Koordinator Divisi') {
+                return $user->member?->division_id === $program->division_id;
+            }
+            return false;
+        });
+
+        \Illuminate\Support\Facades\Gate::define('delete-programs', function ($user, $program) {
+            $position = $user->member?->position?->name;
+            if ($user->role === 'Admin' && in_array($position, ['Ketua', 'Sekretaris'])) {
+                return true;
+            }
+            if ($user->role === 'Admin' && $position === 'Koordinator Divisi') {
+                return $user->member?->division_id === $program->division_id;
+            }
+            return false;
+        });
     }
 }

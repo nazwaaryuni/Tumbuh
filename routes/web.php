@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ProgramController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/division', DivisionController::class);
     Route::resource('/position', PositionController::class);
     Route::resource('/member', MemberController::class);
+    Route::resource('/program', ProgramController::class);
 
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.index')->middleware('can:manage-settings');
     Route::put('/setting/{setting}/update', [SettingController::class, 'update'])->name('setting.update')->middleware('can:manage-settings');

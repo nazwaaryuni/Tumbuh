@@ -306,6 +306,16 @@
                 </li>
             @endcan
 
+            @can('view-programs')
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('program.*') ? '' : 'collapsed' }}"
+                        href="{{ route('program.index') }}">
+                        <i class='bx bx-task'></i>
+                        <span>Program Kerja</span>
+                    </a>
+                </li>
+            @endcan
+
             @can('manage-settings')
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('setting.*') ? '' : 'collapsed' }}"
