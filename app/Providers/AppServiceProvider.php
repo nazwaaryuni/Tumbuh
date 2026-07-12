@@ -192,6 +192,15 @@ class AppServiceProvider extends ServiceProvider
         \Illuminate\Support\Facades\Gate::define('view-attendances', function ($user) {
             return true;
         });
+
+        // ==========================================
+        // BUDGETS (ANGGARAN KEGIATAN)
+        // ==========================================
+        \Illuminate\Support\Facades\Gate::define('manage-budgets', function ($user) {
+            // Hanya Bendahara Umum yang boleh mengubah/membuat RAB
+            $position = $user->member?->position?->name;
+            return $user->role === 'Admin' && in_array($position, ['Bendahara Umum', 'Bendahara']);
+        });
         
         // ==========================================
         // DUES

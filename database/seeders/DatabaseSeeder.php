@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             ProgramSeeder::class,
             ActivitySeeder::class,
             AttendanceSeeder::class,
+            ExpenseBudgetSeeder::class,
             DueSeeder::class,
             SettingSeeder::class,
         ]);

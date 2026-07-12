@@ -51,6 +51,10 @@
                                 </a>
                                 @endcan
 
+                                <a href="{{ route('activities.budgets.index', $activity) }}" class="btn btn-success btn-sm" title="Kelola Anggaran">
+                                    <i class='bx bx-money'></i>
+                                </a>
+
                                 @can('manage-programs-activities', $activity)
                                 <a href="{{ route('activities.edit', $activity) }}" class="btn btn-warning btn-sm" title="Edit Kegiatan">
                                     <i class='bx bx-edit-alt'></i>
