@@ -190,7 +190,21 @@ class AppServiceProvider extends ServiceProvider
             return true; // Atau sesuaikan dengan role
         });
         \Illuminate\Support\Facades\Gate::define('view-attendances', function ($user) {
-            return true; // Atau sesuaikan dengan role
+            return true;
+        });
+        
+        // ==========================================
+        // DUES
+        // ==========================================
+        \Illuminate\Support\Facades\Gate::define('view-dues', function ($user) {
+            // Ketua Umum, Sekretaris Umum, dan pengurus lainnya (Admin) boleh melihat
+            return $user->role === 'Admin';
+        });
+        
+        \Illuminate\Support\Facades\Gate::define('manage-dues', function ($user) {
+            // Hanya Bendahara Umum yang boleh mengubah data
+            $position = $user->member?->position?->name;
+            return $user->role === 'Admin' && in_array($position, ['Bendahara Umum', 'Bendahara']);
         });
     }
 }

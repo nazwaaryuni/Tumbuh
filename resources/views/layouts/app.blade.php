@@ -348,13 +348,23 @@
 
             @can('view-attendances')
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('attendances.*') ? '' : 'collapsed' }}"
+                <a class="nav-link {{ request()->routeIs('attendances.*') || request()->routeIs('activities.attendances.*') ? '' : 'collapsed' }}"
                     href="{{ route('attendances.index') }}">
                     <i class='bx bx-check-square'></i>
                     <span>Absensi</span>
                 </a>
             </li>
-@endcan
+            @endcan
+
+            @can('view-dues')
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('dues.*') ? '' : 'collapsed' }}"
+                    href="{{ route('dues.index') }}">
+                    <i class='bx bx-wallet'></i>
+                    <span>Kas & Iuran</span>
+                </a>
+            </li>
+            @endcan
 
 
         </ul>

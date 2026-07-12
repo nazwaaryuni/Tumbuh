@@ -11,6 +11,7 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\DueController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -40,6 +41,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/attendances', [AttendanceController::class, 'globalIndex'])->name('attendances.index');
     Route::get('/activities/{activity}/attendances', [AttendanceController::class, 'index'])->name('activities.attendances.index');
     Route::post('/activities/{activity}/attendances', [AttendanceController::class, 'store'])->name('activities.attendances.store');
+
+    Route::get('/dues', [DueController::class, 'index'])->name('dues.index');
+    Route::post('/dues', [DueController::class, 'store'])->name('dues.store');
 
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.index')->middleware('can:manage-settings');
     Route::put('/setting/{setting}/update', [SettingController::class, 'update'])->name('setting.update')->middleware('can:manage-settings');
