@@ -12,7 +12,9 @@ use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\DueController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\ExpenseBudgetController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -50,6 +52,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dues', [DueController::class, 'index'])->name('dues.index');
     Route::post('/dues', [DueController::class, 'store'])->name('dues.store');
+
+    Route::resource('/documents', DocumentController::class);
 
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.index')->middleware('can:manage-settings');
     Route::put('/setting/{setting}/update', [SettingController::class, 'update'])->name('setting.update')->middleware('can:manage-settings');

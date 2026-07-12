@@ -366,6 +366,15 @@
             </li>
             @endcan
 
+            @can('view-documents')
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('documents.*') ? '' : 'collapsed' }}"
+                    href="{{ route('documents.index') }}">
+                    <i class='bx bx-folder'></i>
+                    <span>Arsip Dokumen</span>
+                </a>
+            </li>
+            @endcan
 
         </ul>
 

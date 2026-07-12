@@ -43,16 +43,15 @@ class AppServiceProvider extends ServiceProvider
             return $user->role === 'Admin' && in_array($position, ['Ketua', 'Bendahara']);
         });
 
-        \Illuminate\Support\Facades\Gate::define('manage-documents', function ($user, $model = null) {
-            $position = $user->member?->position?->name;
-            if ($user->role === 'Admin' && in_array($position, ['Ketua', 'Sekretaris'])) return true;
-            if ($user->role === 'Admin' && $position === 'Koordinator Divisi') {
-                if ($model && isset($model->division_id)) {
-                    return $user->member?->division_id == $model->division_id;
-                }
-                return true;
-            }
-            return false;
+        \Illuminate\Support\Facades\Gate::define('view-documents', function ($user) {
+            // Pengurus (Admin, Pengurus) bisa melihat
+            return in_array($user->role, ['Admin', 'Pengurus']);
+        });
+
+        \Illuminate\Support\Facades\Gate::define('manage-documents', function ($user) {
+            // Hanya sekretaris yang bisa CRUD dokumen
+            $position = $user->member?->position?->name ?? '';
+            return str_contains(strtolower($position), 'sekretaris');
         });
 
         \Illuminate\Support\Facades\Gate::define('manage-programs-activities', function ($user, $model = null) {
