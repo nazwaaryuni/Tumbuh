@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('program_id')->constrained('programs')->onDelete('cascade');
+            $table->string('name');
+            $table->date('start_date');
+            $table->date('end_date')->nullable();
+            $table->string('location')->nullable();
+            $table->enum('status', ['planned', 'ongoing', 'completed', 'canceled'])->default('planned');
             $table->timestamps();
         });
     }

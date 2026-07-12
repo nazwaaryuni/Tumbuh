@@ -336,6 +336,26 @@
                 </li>
             @endcan
 
+            @can('view-activities')
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('activities.*') ? '' : 'collapsed' }}"
+                    href="{{ route('activities.index') }}">
+                    <i class='bx bx-calendar-event'></i>
+                    <span>Kegiatan</span>
+                </a>
+            </li>
+            @endcan
+
+            @can('view-attendances')
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('attendances.*') ? '' : 'collapsed' }}"
+                    href="{{ route('attendances.index') }}">
+                    <i class='bx bx-check-square'></i>
+                    <span>Absensi</span>
+                </a>
+            </li>
+@endcan
+
 
         </ul>
 

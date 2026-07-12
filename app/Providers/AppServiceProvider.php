@@ -182,5 +182,15 @@ class AppServiceProvider extends ServiceProvider
             }
             return false;
         });
+
+        // ==========================================
+        // ACTIVITIES & ATTENDANCES
+        // ==========================================
+        \Illuminate\Support\Facades\Gate::define('view-activities', function ($user) {
+            return true; // Atau sesuaikan dengan role
+        });
+        \Illuminate\Support\Facades\Gate::define('view-attendances', function ($user) {
+            return true; // Atau sesuaikan dengan role
+        });
     }
 }
