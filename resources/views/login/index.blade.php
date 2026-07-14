@@ -70,10 +70,8 @@
                         </div>
                     @endif
                 </div>
-                <h1 class="text-4xl font-extrabold tracking-tight mb-4">{{ $setting->app_name ?? 'Admin Panel' }}</h1>
-                <p class="text-brand-100 text-lg font-light leading-relaxed">
-                    {{ $setting->description ?? 'Welcome to our modern administrative dashboard. Log in to access your workspace and manage your system seamlessly.' }}
-                </p>
+                <h1 class="text-4xl font-extrabold tracking-tight mb-4">aca</h1>
+                <p class="text-brand-100 text-lg font-light leading-relaxed">TUMBUH</p>
             </div>
         </div>
 

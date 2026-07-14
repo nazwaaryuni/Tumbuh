@@ -54,7 +54,7 @@ class UserSeeder extends Seeder
                 ['email' => $data['email']],
                 [
                     'name' => $data['name'],
-                    'password' => bcrypt('password'),
+                    'password' => 'password',
                     'role' => $data['role'],
                 ]
             );

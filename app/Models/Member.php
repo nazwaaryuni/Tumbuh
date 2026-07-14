@@ -32,4 +32,9 @@ class Member extends Model
     {
         return $this->hasMany(Due::class);
     }
+
+    public function achievements()
+    {
+        return $this->hasMany(Achievement::class);
+    }
 }

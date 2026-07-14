@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             AttendanceSeeder::class,
             ExpenseBudgetSeeder::class,
             DueSeeder::class,
+            AchievementSeeder::class,
             SettingSeeder::class,
         ]);
     }

@@ -22,10 +22,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         try {
-            $setting = Setting::first();
+            $setting = Setting::first() ?? new Setting();
             View::share('setting', $setting);
         } catch (\Exception $e) {
-            // database tidak ditemukan
+            View::share('setting', new Setting());
         }
 
         \Illuminate\Support\Facades\Gate::define('manage-users', function ($user) {

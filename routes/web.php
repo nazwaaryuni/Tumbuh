@@ -38,6 +38,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('/division', DivisionController::class);
     Route::resource('/position', PositionController::class);
     Route::resource('/member', MemberController::class);
+    Route::post('/member/{member}/achievements', [\App\Http\Controllers\AchievementController::class, 'store'])->name('achievements.store');
+    Route::delete('/achievements/{achievement}', [\App\Http\Controllers\AchievementController::class, 'destroy'])->name('achievements.destroy');
+
     Route::resource('/program', ProgramController::class);
     
     Route::resource('/activities', ActivityController::class);
