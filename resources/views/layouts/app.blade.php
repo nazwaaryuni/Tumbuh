@@ -40,12 +40,10 @@
     <style>
         :root {
             /* ====== UBAH WARNA TEMA DI SINI ====== */
-            --theme-bg: #000080;
-            --theme-hover: #020260;
-            /* warna lebih gelap untuk efek hover */
-            --theme-text: #ffffff;
-            --main-bg: #eeeeee;
-            /* warna background utama / halaman */
+            --theme-bg: #FFC0CB; /* soft pink */
+            --theme-hover: #FFB6C1; /* sedikit lebih gelap/berbeda untuk hover */
+            --theme-text: #2E8B57; /* soft green / seagreen untuk tulisan */
+            --main-bg: #FFF0F5; /* warna background utama / halaman yang sangat soft pink/putih */
             /* ===================================== */
         }
 
@@ -55,10 +53,11 @@
             font-weight: bold;
         }
 
-        table.dataTable thead th {
+        table thead th {
             background-color: var(--theme-bg) !important;
             color: var(--theme-text) !important;
             text-align: center !important;
+            vertical-align: middle !important;
         }
 
         #data-table td {
@@ -188,7 +187,7 @@
                     alt="">
                 <span class="d-none d-lg-block">{{ $setting->app_name }}</span>
             </a>
-            <i class="bi bi-list toggle-sidebar-btn"></i>
+            <i class="bi bi-list custom-toggle-btn" style="font-size: 32px; padding-left: 10px; cursor: pointer; color: var(--theme-text);" onclick="document.body.classList.toggle('toggle-sidebar');"></i>
         </div><!-- End Logo -->
 
         <form id="switch-user-form" action="{{ route('login.switch_user') }}" method="POST" class="w-100 mx-2">

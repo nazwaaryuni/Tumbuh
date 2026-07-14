@@ -15,5 +15,5 @@ Membuat modul konfigurasi dinamis yang mengatur aspek visual dan global pada sis
    - Integrasikan pengambilan data `settings` secara global untuk keperluan View (misal: memanggil logo pada Navbar/Login).
 
 ## Kriteria Penerimaan (Acceptance Criteria)
-- [ ] Seeder membuat konfigurasi standar.
-- [ ] Perubahan logo/nama dari menu pengaturan langsung memengaruhi tampilan utama organisasi tanpa hardcode.
+- [x] Seeder membuat konfigurasi standar.
+- [x] Perubahan logo/nama dari menu pengaturan langsung memengaruhi tampilan utama organisasi tanpa hardcode.
