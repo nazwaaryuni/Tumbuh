@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
         $posBendahara = Position::firstOrCreate(['name' => 'Bendahara'], ['level' => 'Inti']);
         $posKoord = Position::firstOrCreate(['name' => 'Koordinator Divisi'], ['level' => 'Kadiv']);
         $posPengurus = Position::firstOrCreate(['name' => 'Pengurus'], ['level' => 'Staf']);
-        $posAnggota = Position::firstOrCreate(['name' => 'Anggota'], ['level' => 'Member']);
+
 
         // 3. Definisikan array usersData
         $usersData = [
@@ -39,12 +39,6 @@ class UserSeeder extends Seeder
             ['name' => 'Pengurus Humas 2', 'email' => 'pengurus2@gmail.com', 'role' => 'Pengurus', 'pos' => $posPengurus->id, 'div' => $divHumas->id],
             ['name' => 'Pengurus PSDM 1', 'email' => 'pengurus3@gmail.com', 'role' => 'Pengurus', 'pos' => $posPengurus->id, 'div' => $divPSDM->id],
 
-            // Anggota
-            ['name' => 'Anggota 1', 'email' => 'anggota1@gmail.com', 'role' => 'Anggota', 'pos' => $posAnggota->id, 'div' => null],
-            ['name' => 'Anggota 2', 'email' => 'anggota2@gmail.com', 'role' => 'Anggota', 'pos' => $posAnggota->id, 'div' => null],
-            ['name' => 'Anggota 3', 'email' => 'anggota3@gmail.com', 'role' => 'Anggota', 'pos' => $posAnggota->id, 'div' => null],
-            ['name' => 'Anggota 4', 'email' => 'anggota4@gmail.com', 'role' => 'Anggota', 'pos' => $posAnggota->id, 'div' => null],
-            ['name' => 'Anggota 5', 'email' => 'anggota5@gmail.com', 'role' => 'Anggota', 'pos' => $posAnggota->id, 'div' => null],
         ];
 
         // 4. Loop usersData

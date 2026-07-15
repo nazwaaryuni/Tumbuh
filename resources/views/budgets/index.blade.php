@@ -56,7 +56,7 @@
                     <table class="table table-bordered table-striped align-middle">
                         <thead class="table-light">
                             <tr>
-                                <th scope="col" width="5%">#</th>
+                                <th scope="col" width="5%">No</th>
                                 <th scope="col" width="35%">Item Kebutuhan</th>
                                 <th scope="col" width="20%">Rencana (Rp)</th>
                                 <th scope="col" width="20%">Realisasi (Rp)</th>

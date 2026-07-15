@@ -33,7 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/edit', [DashboardController::class, 'edit'])->name('dashboard.edit');
     Route::put('/dashboard/update', [DashboardController::class, 'update'])->name('dashboard.update');
 
-    Route::resource('/user', UserController::class)->middleware('can:manage-users');
+    Route::resource('/user', UserController::class)->except(['index', 'show'])->middleware('can:manage-users');
+    Route::resource('/user', UserController::class)->only(['index', 'show'])->middleware('can:view-users');
     
     Route::resource('/division', DivisionController::class);
     Route::resource('/position', PositionController::class);
@@ -58,6 +59,6 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/documents', DocumentController::class);
 
-    Route::get('/setting', [SettingController::class, 'index'])->name('setting.index')->middleware('can:manage-settings');
+    Route::get('/setting', [SettingController::class, 'index'])->name('setting.index')->middleware('can:view-settings');
     Route::put('/setting/{setting}/update', [SettingController::class, 'update'])->name('setting.update')->middleware('can:manage-settings');
 });

@@ -18,7 +18,6 @@
                     <option value="Inti" @selected(old('level', $position->level) == 'Inti')>Inti</option>
                     <option value="Kadiv" @selected(old('level', $position->level) == 'Kadiv')>Kadiv</option>
                     <option value="Staf" @selected(old('level', $position->level) == 'Staf')>Staf</option>
-                    <option value="Member" @selected(old('level', $position->level) == 'Member')>Member</option>
                 </select>
                 @error('level')<div class="invalid-feedback">{{ $message }}</div>@enderror
             </div>

@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-md-2">
                     <select name="division_id" class="form-select">
-                        <option value="">Semua Divisi</option>
+                        <option value="">Pilih Divisi</option>
                         @foreach($divisions as $div)
                             <option value="{{ $div->id }}" @selected(request('division_id') == $div->id)>{{ $div->name }}</option>
                         @endforeach
@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-md-2">
                     <select name="position_id" class="form-select">
-                        <option value="">Semua Jabatan</option>
+                        <option value="">Pilih Jabatan</option>
                         @foreach($positions as $pos)
                             <option value="{{ $pos->id }}" @selected(request('position_id') == $pos->id)>{{ $pos->name }}</option>
                         @endforeach
@@ -25,14 +25,13 @@
                 </div>
                 <div class="col-md-2">
                     <select name="status" class="form-select">
-                        <option value="">Semua Status</option>
+                        <option value="">Pilih Status</option>
                         <option value="Aktif" @selected(request('status') == 'Aktif')>Aktif</option>
                         <option value="Pasif" @selected(request('status') == 'Pasif')>Pasif</option>
-                        <option value="Alumni" @selected(request('status') == 'Alumni')>Alumni</option>
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <button type="submit" class="btn btn-primary w-100"><i class="bx bx-search"></i> Terapkan Filter</button>
+                    <button type="submit" class="btn btn-primary w-100"><i class="bx bx-search"></i> CARI</button>
                 </div>
             </div>
         </form>
@@ -43,8 +42,9 @@
             <table class="table table-bordered table-striped w-100">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">No</th>
                         <th scope="col">Nama Lengkap</th>
+                        <th scope="col">Nomor Telepon</th>
                         <th scope="col">Email</th>
                         <th scope="col">Role</th>
                         <th scope="col">Divisi</th>
@@ -59,6 +59,7 @@
                         <tr>
                             <td>{{ $loop->iteration + $members->firstItem() - 1 }}</td>
                             <td>{{ $member->full_name }}</td>
+                            <td>{{ $member->phone }}</td>
                             <td>{{ $member->user->email ?? '-' }}</td>
                             <td>{{ $member->user->role ?? '-' }}</td>
                             <td>{{ $member->division?->name ?? '-' }}</td>

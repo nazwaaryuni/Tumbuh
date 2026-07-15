@@ -7,7 +7,7 @@
 
 
 
-    <title>{{ $setting->app_name }} | {{ $title }}</title>
+    <title>{{ $setting->app_name }} | {{ $title }} - Periode 2026/2027</title>
     <meta content="{{ $setting->description }}" name="description">
     <meta content="{{ $setting->keywords }}" name="keywords">
     <meta content="Tamus Tahir" name="author">
@@ -267,6 +267,8 @@
 
         <ul class="sidebar-nav" id="sidebar-nav">
 
+            <li class="nav-heading">UTAMA & OPERASIONAL</li>
+
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('dashboard.*') ? '' : 'collapsed' }}"
                     href="{{ route('dashboard.index') }}">
@@ -274,6 +276,48 @@
                     <span>Dashboard</span>
                 </a>
             </li>
+
+            @can('view-activities')
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('activities.*') ? '' : 'collapsed' }}"
+                    href="{{ route('activities.index') }}">
+                    <i class='bx bx-calendar-event'></i>
+                    <span>Kegiatan</span>
+                </a>
+            </li>
+            @endcan
+
+            @can('view-attendances')
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('attendances.*') || request()->routeIs('activities.attendances.*') ? '' : 'collapsed' }}"
+                    href="{{ route('attendances.index') }}">
+                    <i class='bx bx-check-square'></i>
+                    <span>Absensi</span>
+                </a>
+            </li>
+            @endcan
+
+            @can('view-programs')
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('program.*') ? '' : 'collapsed' }}"
+                        href="{{ route('program.index') }}">
+                        <i class='bx bx-task'></i>
+                        <span>Program Kerja</span>
+                    </a>
+                </li>
+            @endcan
+
+            @can('view-dues')
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('dues.*') ? '' : 'collapsed' }}"
+                    href="{{ route('dues.index') }}">
+                    <i class='bx bx-wallet'></i>
+                    <span>Kas & Iuran</span>
+                </a>
+            </li>
+            @endcan
+
+            <li class="nav-heading mt-3">DATA MASTER</li>
 
             @can('view-members')
                 <li class="nav-item">
@@ -305,27 +349,19 @@
                 </li>
             @endcan
 
-            @can('view-programs')
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('program.*') ? '' : 'collapsed' }}"
-                        href="{{ route('program.index') }}">
-                        <i class='bx bx-task'></i>
-                        <span>Program Kerja</span>
-                    </a>
-                </li>
-            @endcan
-
-            @can('manage-settings')
+            @can('view-documents')
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('setting.*') ? '' : 'collapsed' }}"
-                    href="{{ route('setting.index') }}">
-                    <i class='bx bx-cog'></i>
-                    <span>Setting</span>
+                <a class="nav-link {{ request()->routeIs('documents.*') ? '' : 'collapsed' }}"
+                    href="{{ route('documents.index') }}">
+                    <i class='bx bx-folder'></i>
+                    <span>Arsip Dokumen</span>
                 </a>
             </li>
             @endcan
 
-            @can('manage-users')
+            <li class="nav-heading mt-3">ADMINISTRASI & SISTEM</li>
+
+            @can('view-users')
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('user.*') ? '' : 'collapsed' }}"
                         href="{{ route('user.index') }}">
@@ -335,42 +371,12 @@
                 </li>
             @endcan
 
-            @can('view-activities')
+            @can('view-settings')
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('activities.*') ? '' : 'collapsed' }}"
-                    href="{{ route('activities.index') }}">
-                    <i class='bx bx-calendar-event'></i>
-                    <span>Kegiatan</span>
-                </a>
-            </li>
-            @endcan
-
-            @can('view-attendances')
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('attendances.*') || request()->routeIs('activities.attendances.*') ? '' : 'collapsed' }}"
-                    href="{{ route('attendances.index') }}">
-                    <i class='bx bx-check-square'></i>
-                    <span>Absensi</span>
-                </a>
-            </li>
-            @endcan
-
-            @can('view-dues')
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('dues.*') ? '' : 'collapsed' }}"
-                    href="{{ route('dues.index') }}">
-                    <i class='bx bx-wallet'></i>
-                    <span>Kas & Iuran</span>
-                </a>
-            </li>
-            @endcan
-
-            @can('view-documents')
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('documents.*') ? '' : 'collapsed' }}"
-                    href="{{ route('documents.index') }}">
-                    <i class='bx bx-folder'></i>
-                    <span>Arsip Dokumen</span>
+                <a class="nav-link {{ request()->routeIs('setting.*') ? '' : 'collapsed' }}"
+                    href="{{ route('setting.index') }}">
+                    <i class='bx bx-cog'></i>
+                    <span>Setting</span>
                 </a>
             </li>
             @endcan
@@ -382,7 +388,7 @@
     <main id="main" class="main flex-grow-1">
 
         <div class="card shadow p-3 page-header-card">
-            <h5 class="fw-bold m-0">{{ $title }}</h5>
+            <h5 class="fw-bold m-0">{{ $title }} - Periode 2026/2027</h5>
         </div>
 
         {{ $slot }}
@@ -513,6 +519,11 @@
                 icon: "error"
             });
         }
+
+        $(document).on('click', '.btn-delete', function() {
+            let route = $(this).data('route');
+            $('#form-delete').attr('action', route);
+        });
     </script>
 
     @stack('scripts')

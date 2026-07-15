@@ -38,7 +38,9 @@
                                     <i class='bx bx-check-square'></i> Kelola Absensi
                                 </a>
                                 @else
-                                <span class="text-muted">Akses ditolak</span>
+                                <a href="{{ route('activities.attendances.index', $activity) }}" class="btn btn-info btn-sm text-white">
+                                    <i class='bx bx-show'></i> Lihat Absensi
+                                </a>
                                 @endcan
                             </td>
                         </tr>

@@ -12,7 +12,7 @@
             <table class="table table-bordered table-striped w-100">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">No</th>
                         <th scope="col">Nama Jabatan</th>
                         <th scope="col">Level</th>
                         <th scope="col">Aksi</th>

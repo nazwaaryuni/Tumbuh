@@ -22,7 +22,7 @@
             <table class="table table-bordered table-striped w-100 align-middle">
                 <thead class="table-light">
                     <tr>
-                        <th scope="col" width="5%">#</th>
+                        <th scope="col" width="5%">No</th>
                         <th scope="col" width="30%">Nama Anggota</th>
                         <th scope="col" width="20%">Divisi</th>
                         <th scope="col" width="15%">Nominal Iuran</th>
@@ -95,7 +95,7 @@
                                         </div>
                                     </div>
                                 @else
-                                    <span class="text-muted">No Access</span>
+                                    <span class="text-muted">-</span>
                                 @endcan
                             </td>
                         </tr>

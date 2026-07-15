@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('full_name');
             $table->string('phone')->nullable();
             $table->date('join_date')->nullable();
-            $table->enum('status', ['Aktif', 'Pasif', 'Alumni'])->default('Aktif');
+            $table->enum('status', ['Aktif', 'Pasif'])->default('Aktif');
             $table->timestamps();
         });
     }

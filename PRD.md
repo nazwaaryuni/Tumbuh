@@ -66,9 +66,10 @@ erDiagram
     
     USERS {
         int id PK
+        string name
         string email
         string password
-        string role "Admin, Pengurus, Anggota"
+        string role "Admin, Pengurus"
     }
 
     DIVISIONS {
@@ -91,7 +92,7 @@ erDiagram
         string full_name
         string phone
         date join_date
-        string status "Aktif, Pasif, Alumni"
+        string status "Aktif, Pasif"
     }
 
     PROGRAMS {
@@ -106,10 +107,10 @@ erDiagram
         int id PK
         int program_id FK
         string name
-        datetime start_date
-        datetime end_date
+        date start_date
+        date end_date
         string location
-        string status "Draft, Ongoing, Completed"
+        string status "planned, ongoing, completed, canceled"
     }
 
     ATTENDANCES {
@@ -117,7 +118,7 @@ erDiagram
         int activity_id FK
         int member_id FK
         datetime time
-        string status "Hadir, Izin, Sakit"
+        string status "Hadir, Izin, Sakit, Alpha"
     }
 
     EXPENSE_BUDGETS {
@@ -143,7 +144,7 @@ erDiagram
         string title
         string type "Surat Masuk, Surat Keluar, Proposal, LPJ"
         string file_url
-        datetime uploaded_at
+        datetime created_at
     }
 
     ACHIEVEMENTS {
@@ -157,7 +158,11 @@ erDiagram
 
     SETTINGS {
         int id PK
-        string key_name "Misal: logo, app_name"
-        string value
+        string app_name
+        string copyright
+        string login_title
+        string keywords
+        string description
+        string logo
     }
 ```

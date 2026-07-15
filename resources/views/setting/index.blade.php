@@ -80,7 +80,11 @@
 
             </div>
 
+            @can('manage-settings')
             <button class="btn btn-primary" type="submit">Simpan</button>
+            @else
+            <span class="text-muted"><i></i></span>
+            @endcan
         </form>
 
     </div>

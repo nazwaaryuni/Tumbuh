@@ -46,7 +46,7 @@
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>No</th>
                         <th>Judul Prestasi</th>
                         <th>Tingkat</th>
                         <th>Tanggal Diraih</th>

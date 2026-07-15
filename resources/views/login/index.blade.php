@@ -26,12 +26,12 @@
                     },
                     colors: {
                         brand: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            500: '#3b82f6',
-                            600: '#2563eb', // Matches the modern blue theme
-                            700: '#1d4ed8',
-                            900: '#1e3a8a',
+                            50: '#fdf2f8',
+                            100: '#fce7f3',
+                            500: '#ec4899',
+                            600: '#db2777', // Pink theme
+                            700: '#be185d',
+                            900: '#831843',
                         }
                     }
                 }

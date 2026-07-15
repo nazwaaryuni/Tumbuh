@@ -29,7 +29,7 @@
                 <table class="table table-bordered table-striped w-100 align-middle">
                     <thead class="table-light">
                         <tr>
-                            <th scope="col" width="5%">#</th>
+                            <th scope="col" width="5%">No</th>
                             <th scope="col" width="30%">Nama Anggota</th>
                             <th scope="col" width="25%">Divisi</th>
                             <th scope="col" width="40%">Status Kehadiran</th>
@@ -48,19 +48,19 @@
                                 <td>
                                     <div class="d-flex gap-3">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="attendances[{{ $member->id }}][status]" id="hadir_{{ $member->id }}" value="Hadir" {{ $status == 'Hadir' ? 'checked' : '' }}>
+                                            <input class="form-check-input" type="radio" name="attendances[{{ $member->id }}][status]" id="hadir_{{ $member->id }}" value="Hadir" {{ $status == 'Hadir' ? 'checked' : '' }} @cannot('fill-attendance') disabled @endcannot>
                                             <label class="form-check-label text-success" for="hadir_{{ $member->id }}">Hadir</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="attendances[{{ $member->id }}][status]" id="izin_{{ $member->id }}" value="Izin" {{ $status == 'Izin' ? 'checked' : '' }}>
+                                            <input class="form-check-input" type="radio" name="attendances[{{ $member->id }}][status]" id="izin_{{ $member->id }}" value="Izin" {{ $status == 'Izin' ? 'checked' : '' }} @cannot('fill-attendance') disabled @endcannot>
                                             <label class="form-check-label text-warning" for="izin_{{ $member->id }}">Izin</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="attendances[{{ $member->id }}][status]" id="sakit_{{ $member->id }}" value="Sakit" {{ $status == 'Sakit' ? 'checked' : '' }}>
+                                            <input class="form-check-input" type="radio" name="attendances[{{ $member->id }}][status]" id="sakit_{{ $member->id }}" value="Sakit" {{ $status == 'Sakit' ? 'checked' : '' }} @cannot('fill-attendance') disabled @endcannot>
                                             <label class="form-check-label text-info" for="sakit_{{ $member->id }}">Sakit</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="attendances[{{ $member->id }}][status]" id="alpha_{{ $member->id }}" value="Alpha" {{ $status == 'Alpha' ? 'checked' : '' }}>
+                                            <input class="form-check-input" type="radio" name="attendances[{{ $member->id }}][status]" id="alpha_{{ $member->id }}" value="Alpha" {{ $status == 'Alpha' ? 'checked' : '' }} @cannot('fill-attendance') disabled @endcannot>
                                             <label class="form-check-label text-danger" for="alpha_{{ $member->id }}">Alpha</label>
                                         </div>
                                     </div>
@@ -77,7 +77,9 @@
 
             <div class="mt-3 text-end">
                 <a href="{{ route('attendances.index') }}" class="btn btn-secondary me-2">Kembali</a>
+                @can('fill-attendance')
                 <button type="submit" class="btn btn-primary"><i class="bx bx-save"></i> Simpan Absensi</button>
+                @endcan
             </div>
         </form>
     </div>

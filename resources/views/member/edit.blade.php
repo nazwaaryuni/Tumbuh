@@ -17,11 +17,17 @@
                 @error('phone')<div class="invalid-feedback">{{ $message }}</div>@enderror
             </div>
 
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email', $member->email) }}">
+                @error('email')<div class="invalid-feedback">{{ $message }}</div>@enderror
+            </div>
+
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="division_id" class="form-label">Divisi</label>
                     <select class="form-select @error('division_id') is-invalid @enderror" id="division_id" name="division_id">
-                        <option value="">-- Tidak Ada --</option>
+                        <option value="">Pilih Divisi</option>
                         @foreach($divisions as $div)
                             <option value="{{ $div->id }}" @selected(old('division_id', $member->division_id) == $div->id)>{{ $div->name }}</option>
                         @endforeach
@@ -32,7 +38,7 @@
                 <div class="col-md-6 mb-3">
                     <label for="position_id" class="form-label">Jabatan</label>
                     <select class="form-select @error('position_id') is-invalid @enderror" id="position_id" name="position_id">
-                        <option value="">-- Tidak Ada --</option>
+                        <option value="">Pilih Jabatan</option>
                         @foreach($positions as $pos)
                             <option value="{{ $pos->id }}" @selected(old('position_id', $member->position_id) == $pos->id)>{{ $pos->name }}</option>
                         @endforeach
@@ -53,7 +59,6 @@
                     <select class="form-select @error('status') is-invalid @enderror" id="status" name="status" required>
                         <option value="Aktif" @selected(old('status', $member->status) == 'Aktif')>Aktif</option>
                         <option value="Pasif" @selected(old('status', $member->status) == 'Pasif')>Pasif</option>
-                        <option value="Alumni" @selected(old('status', $member->status) == 'Alumni')>Alumni</option>
                     </select>
                     @error('status')<div class="invalid-feedback">{{ $message }}</div>@enderror
                 </div>

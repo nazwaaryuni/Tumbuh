@@ -12,7 +12,7 @@
             <table class="table table-bordered table-striped w-100">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">No</th>
                         <th scope="col">Judul Dokumen</th>
                         <th scope="col">Jenis</th>
                         <th scope="col">File</th>
@@ -27,7 +27,7 @@
                             <td>{{ $document->title }}</td>
                             <td>{{ $document->type }}</td>
                             <td>
-                                <a href="{{ Storage::url($document->file_url) }}" target="_blank" class="btn btn-sm btn-info">Unduh/Lihat</a>
+                                <a href="{{ Storage::url($document->file_url) }}" target="_blank" class="btn btn-sm btn-danger" download="{{ Str::slug($document->title) }}.{{ pathinfo($document->file_url, PATHINFO_EXTENSION) }}">Unduh/Lihat</a>
                             </td>
                             <td>{{ $document->created_at->format('d M Y H:i') }}</td>
                             <td>

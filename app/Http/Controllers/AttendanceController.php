@@ -11,7 +11,7 @@ class AttendanceController extends Controller
 {
     public function globalIndex()
     {
-        $title = 'Pilih Kegiatan untuk Absensi';
+        $title = 'Absensi Kegiatan';
         $activities = Activity::with('program')->get();
         return view('attendances.global_index', compact('activities', 'title'));
     }
@@ -27,6 +27,8 @@ class AttendanceController extends Controller
 
     public function store(Request $request, Activity $activity)
     {
+        \Illuminate\Support\Facades\Gate::authorize('fill-attendance');
+
         $request->validate([
             'attendances' => 'required|array',
             'attendances.*.status' => 'required|in:Hadir,Izin,Sakit,Alpha',

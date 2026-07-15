@@ -6,9 +6,11 @@
 
     <div class="card shadow-lg p-3">
 
+        @can('manage-users')
         <div class="mb-3">
             <a class="btn btn-primary" href="{{ route('user.create') }}" role="button">Tambah</a>
         </div>
+        @endcan
 
         <div class="table-responsive">
             <table class="table table-bordered table-striped w-100" id="data-table">
@@ -33,6 +35,7 @@
                                     data-route="{{ route('user.show', $user) }}">
                                     <i class='bx bx-show'></i>
                                 </button>
+                                @can('manage-users')
                                 <a href="{{ route('user.edit', $user) }}" class="btn btn-warning btn-sm">
                                     <i class='bx bx-edit-alt'></i>
                                 </a>
@@ -40,6 +43,7 @@
                                     data-bs-target="#deleteModal" data-route="{{ route('user.destroy', $user) }}">
                                     <i class='bx bx-trash'></i>
                                 </button>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

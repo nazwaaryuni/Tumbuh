@@ -12,9 +12,9 @@
             <table class="table table-bordered table-striped w-100">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">No</th>
                         <th scope="col">Nama Kegiatan</th>
-                        <th scope="col">Program Induk</th>
+                        <th scope="col">Program Kerja</th>
                         <th scope="col">Tanggal</th>
                         <th scope="col">Lokasi</th>
                         <th scope="col">Status</th>
@@ -47,7 +47,7 @@
                             <td>
                                 @can('fill-attendance')
                                 <a href="{{ route('activities.attendances.index', $activity) }}" class="btn btn-info btn-sm" title="Kelola Absensi">
-                                    <i class='bx bx-check-square'></i>
+                                    <i class='bx bx-user-check'></i>
                                 </a>
                                 @endcan
 

@@ -69,7 +69,7 @@ class MemberController extends Controller
             'full_name' => 'required|string|max:255',
             'phone' => 'nullable|string|max:20',
             'join_date' => 'nullable|date',
-            'status' => 'required|in:Aktif,Pasif,Alumni',
+            'status' => 'required|in:Aktif,Pasif',
         ]);
 
         $member->update($validated);

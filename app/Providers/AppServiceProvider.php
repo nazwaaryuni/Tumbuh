@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Setting;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Paginator::useBootstrapFive();
+
         try {
             $setting = Setting::first() ?? new Setting();
             View::share('setting', $setting);
@@ -30,12 +33,20 @@ class AppServiceProvider extends ServiceProvider
 
         \Illuminate\Support\Facades\Gate::define('manage-users', function ($user) {
             $position = $user->member?->position?->name;
-            return $user->role === 'Admin' && $position === 'Ketua';
+            return $user->role === 'Admin' && in_array($position, ['Ketua', 'Ketua Umum']);
+        });
+
+        \Illuminate\Support\Facades\Gate::define('view-users', function ($user) {
+            return in_array($user->role, ['Admin', 'Pengurus']);
+        });
+
+        \Illuminate\Support\Facades\Gate::define('view-settings', function ($user) {
+            return true;
         });
 
         \Illuminate\Support\Facades\Gate::define('manage-settings', function ($user) {
             $position = $user->member?->position?->name;
-            return $user->role === 'Admin' && $position === 'Ketua';
+            return $user->role === 'Admin' && in_array($position, ['Ketua', 'Ketua Umum']);
         });
 
         \Illuminate\Support\Facades\Gate::define('manage-finances', function ($user) {
@@ -73,12 +84,11 @@ class AppServiceProvider extends ServiceProvider
 
         \Illuminate\Support\Facades\Gate::define('manage-achievements', function ($user) {
             $position = $user->member?->position?->name;
-            return $user->role === 'Admin' && in_array($position, ['Ketua', 'Sekretaris', 'Koordinator Divisi']);
+            return $user->role === 'Admin' && in_array($position, ['Ketua', 'Sekretaris', 'Koordinator Divisi', 'Ketua Umum', 'Sekretaris Umum']);
         });
 
         \Illuminate\Support\Facades\Gate::define('fill-attendance', function ($user) {
-            $position = $user->member?->position?->name;
-            return ($user->role === 'Admin' && in_array($position, ['Ketua', 'Sekretaris', 'Koordinator Divisi'])) || $user->role === 'Pengurus';
+            return $user->role === 'Admin';
         });
 
         // ==========================================
@@ -108,8 +118,8 @@ class AppServiceProvider extends ServiceProvider
         // DIVISIONS
         // ==========================================
         \Illuminate\Support\Facades\Gate::define('view-divisions', function ($user) {
-            // Hanya role Admin (Ketua, Sekretaris, Bendahara, Koordinator)
-            return $user->role === 'Admin';
+            // Admin dan Pengurus boleh melihat
+            return in_array($user->role, ['Admin', 'Pengurus']);
         });
 
         \Illuminate\Support\Facades\Gate::define('create-divisions', function ($user) {
@@ -131,7 +141,7 @@ class AppServiceProvider extends ServiceProvider
         // POSITIONS
         // ==========================================
         \Illuminate\Support\Facades\Gate::define('view-positions', function ($user) {
-            return $user->role === 'Admin';
+            return in_array($user->role, ['Admin', 'Pengurus']);
         });
 
         \Illuminate\Support\Facades\Gate::define('create-positions', function ($user) {
@@ -152,7 +162,7 @@ class AppServiceProvider extends ServiceProvider
         // PROGRAMS
         // ==========================================
         \Illuminate\Support\Facades\Gate::define('view-programs', function ($user) {
-            return $user->role === 'Admin';
+            return in_array($user->role, ['Admin', 'Pengurus']);
         });
 
         \Illuminate\Support\Facades\Gate::define('create-programs', function ($user) {
@@ -205,8 +215,8 @@ class AppServiceProvider extends ServiceProvider
         // DUES
         // ==========================================
         \Illuminate\Support\Facades\Gate::define('view-dues', function ($user) {
-            // Ketua Umum, Sekretaris Umum, dan pengurus lainnya (Admin) boleh melihat
-            return $user->role === 'Admin';
+            // Ketua Umum, Sekretaris Umum, dan pengurus lainnya (Admin, Pengurus) boleh melihat
+            return in_array($user->role, ['Admin', 'Pengurus']);
         });
         
         \Illuminate\Support\Facades\Gate::define('manage-dues', function ($user) {

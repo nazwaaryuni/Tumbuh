@@ -30,7 +30,7 @@
 
     <!-- Statistics Cards -->
     <div class="row g-4 mb-4">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card shadow-sm border-0 h-100">
                 <div class="card-body p-4">
                     <div class="d-flex align-items-center justify-content-between">
@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card shadow-sm border-0 h-100">
                 <div class="card-body p-4">
                     <div class="d-flex align-items-center justify-content-between">
@@ -74,7 +74,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card shadow-sm border-0 h-100">
                 <div class="card-body p-4">
                     <div class="d-flex align-items-center justify-content-between">
@@ -96,27 +96,6 @@
             </div>
         </div>
 
-        <div class="col-md-3">
-            <div class="card shadow-sm border-0 h-100">
-                <div class="card-body p-4">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <p class="text-muted mb-1 small">Anggota</p>
-                            <h2 class="fw-bold mb-0">{{ $anggotaCount }}</h2>
-                        </div>
-                        <div class="bg-info bg-opacity-10 rounded-circle p-3">
-                            <i class='bx bx-group fs-2 text-info'></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer bg-info bg-opacity-10 border-0 py-2">
-                    <small class="text-info fw-semibold">
-                        <i class='bx bx-user me-1'></i>
-                        Standard members
-                    </small>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Quick Actions -->
@@ -203,7 +182,7 @@
         </div>
 
         <div class="col-md-6">
-            <div class="card shadow-sm border-0 pt-4">
+            <div class="card shadow-sm border-0">
                 <div class="card-header bg-white border-bottom">
                     <h6 class="mb-0 fw-bold">
                         <i class='bx bx-user me-2 text-primary'></i>
@@ -211,7 +190,7 @@
                     </h6>
                 </div>
                 <div class="card-body">
-                    <ul class="list-unstyled mb-0">
+                    <ul class="list-unstyled mb-0 pt-4">
                         <li class="mb-2">
                             <i class='bx bx-envelope text-primary me-2'></i>
                             <strong>Email:</strong> {{ Auth::user()->email }}

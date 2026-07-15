@@ -15,7 +15,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="program_id" class="form-label">Program Induk <span class="text-danger">*</span></label>
+                <label for="program_id" class="form-label">Program  Kerja <span class="text-danger">*</span></label>
                 <select class="form-select @error('program_id') is-invalid @enderror" id="program_id" name="program_id" required>
                     <option value="">Pilih Program Kerja</option>
                     @foreach($programs as $program)

@@ -16,5 +16,5 @@ Membangun fitur portofolio untuk mencatat prestasi dan pencapaian yang diperoleh
    - Menampilkan daftar prestasi pada halaman profil anggota.
 
 ## Kriteria Penerimaan (Acceptance Criteria)
-- [ ] Profil anggota memuat riwayat prestasi jika ada.
-- [ ] CRUD untuk tabel prestasi berfungsi penuh dengan seeder data yang tersedia.
+- [x] Profil anggota memuat riwayat prestasi jika ada.
+- [x] CRUD untuk tabel prestasi berfungsi penuh dengan seeder data yang tersedia.

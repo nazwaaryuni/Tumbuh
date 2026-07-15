@@ -14,14 +14,11 @@ class DashboardController extends Controller
         $totalUsers = \App\Models\User::count();
         $adminCount = \App\Models\User::where('role', 'Admin')->count();
         $pengurusCount = \App\Models\User::where('role', 'Pengurus')->count();
-        $anggotaCount = \App\Models\User::where('role', 'Anggota')->count();
-
         return view('dashboard.index', [
             'title' => 'Dashboard',
             'totalUsers' => $totalUsers,
             'adminCount' => $adminCount,
             'pengurusCount' => $pengurusCount,
-            'anggotaCount' => $anggotaCount,
         ]);
     }
 
